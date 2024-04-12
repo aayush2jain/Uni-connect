@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>jj</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+    <style>
+        #new-user-form {
+            background: rgb(6, 68, 198);
+            background: linear-gradient(180deg, rgba(6, 68, 198, 1) 50%, rgba(3, 23, 45, 1) 100%);
+        }
+
+        body {
+            background: rgb(14, 15, 17, 0.9)
+                /* background: rgb(135, 174, 252); */
+        }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.2/socket.io.js"
+        integrity="sha512-VJ6+sp2E5rFQk05caiXXzQd1wBABpjEj1r5kMiLmGAAgwPItw1YpqsCCBtq8Yr1x6C49/mTpRdXtq8O2RcZhlQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+    <h1 class="text-center mt-4 text-4xl font-semibold text-zinc-100">Group Chat App</h1>
+    <div class="w-[70vw] h-[80vh] bg-black mx-48 mt-8 relative rounded-md" id="new-user-form">
+        <div id="member" class="h-[75vh] w-[16vw] bg-black/50 backdrop-opacity-10 text-cyan-300 pl-2"></div>
+        <input id="hii" class="absolute bottom-0 h-[5vh] left-52 w-[40vw] rounded-md" type="text"
+            placeholder="Enter-your-name">
+        <button id="send" class="absolute bottom-0 font-semibold p-1 px-2 rounded-md right-28 bg-white" type="button"
+            onclick="hello() ">Chat</button>
+    </div>
+
+    <script src="" async defer></script>
+    <script>
+        const socket = io();
+
+        function send(user) {
+            var user = user;
+            var message = document.getElementById('msg').value;
+            if (message != "") {
+                socket.emit('message', {
+                    message: message,
+                    user: user
+                });
+                document.getElementById('msg').value = "";
+            }
+
+        }
+
+        function hello() {
+            if (document.getElementById("hii").value == "") {
+                alert('please enter a username');
+            } else {
+                socket.emit('set-user-name', document.getElementById("hii").value)
+            }
+        }
+        socket.on('userexist', function (data) {
+        alert(data);
+        });
+        socket.on('new-msg', function (data) {
+            let message = data.message;
+            const user = data.username;
+
+            document.getElementById("msg-container").innerHTML += `
+             <h1 class="rounded-full p-2 mb-1 bg-emerald-400">
+                 ${user}: ${message}</h1>`
+
+        })
+        socket.on('set-user', function (data) {
+            user = data.username;
+            // document.getElementById("new-user-form").innerHTML='<input type="text" id="msg"\
+            //  placeholder="enter your message">\
+            //  <button type="button" onclick="send(user)">send</button>\
+            //  <div id="msg-container"></div>'
+            document.getElementById("new-user-form").innerHTML = ' <div id="member"\
+                class="h-[75vh] w-[16vw] bg-black/50 backdrop-opacity-10 text-cyan-300 pl-2"></div>\
+                <input id="msg" class="absolute bottom-0 h-[5vh] left-52 w-[40vw] rounded-md" type="text"\
+                placeholder="Enter-your-message">\
+                <button id="send" class="absolute bottom-0 font-semibold p-1 px-2 rounded-md right-28 bg-white" type="button"\
+                onclick="send(user) ">Send</button>\
+                <div id="msg-container" class="py-4 absolute  top-4 left-52 h-[70vh] w-[50vw] overflow-y-auto"></div>'
+        })
+        socket.on('user-connect', function (data) {
+            let user = data.username;
+            document.getElementById("member").innerHTML += `<h1>=>${user} in the chat</h1><br>`
+        })
+        socket.on('user-disconnect', function (data) {
+            user = data.username;
+            document.getElementById("msg-container").innerHTML += `${user} leave the chat<br>`
+        })
+        document.addEventListener("keypress", function (event) {
+            // Check if the pressed key is "Enter" key
+            if (event.key === "Enter") {
+                document.getElementById("send").click();
+            }
+        });
+    </script>
+</body>
+
+</html>

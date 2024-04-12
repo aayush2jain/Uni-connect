@@ -1,0 +1,95 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration Form</title>
+</head>
+
+
+
+    <h2>User Registration Form</h2>
+
+    <form action="/register" method="post" enctype="multipart/form-data">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <label for="image">Image:</label><br>
+        <input type="file" id="image" name="image" accept="image/*"  required><br><br>
+
+        <label for="mno">Roll no:</label><br>
+        <input type="tel" id="phone" name="phone" pattern="[0-9]{2}/[a-zA-Z]/[0-9]{3}" placeholder="23/IT/006"><br><br>
+
+        <input type="submit" value="Submit">
+    </form>
+    <h1>already register click below for login</h1>
+    <a href="/login">login</a>
+
+</body>
+
+</html> -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="hello w-full h-screen
+        bg-[url('https://envato-shoebox-0.imgix.net/cfe0/1b3b-c8d1-4f38-be9e-6a0922948b91/0096-r-3-sr-19-10-22-ss-st-dt-bt-dp-rf-is-ev.jpg?auto=compress%2Cformat&mark=https%3A%2F%2Felements-assets.envato.com%2Fstatic%2Fwatermark2.png&w=1000&fit=max&markalign=center%2Cmiddle&markalpha=18&s=637902622d7dd437e9cfae74fc9f20b7')]
+        flex items-center justify-center text-zinc-300">
+        <div class="w-[30vw] h-[95vh] bg-black-80 px-10 py-2 rounded-[25px] gap-10
+           ">
+            <!-- <div class="image mb-3 rounded-full "><img class="grid justify-items-center" src="/images/pin/pin.webp"
+                    width="50px">
+             </div> -->
+             <h1 class="text-center semibold text-3xl leading-none mt-[5vh]"> Welcome to app.</h1>
+            <form action="/register" method="post" enctype="multipart/form-data">
+                <!-- <h2 class="mt-2 ml-3">Username:</h2>
+                <input class="main border-2 rounded-full w-full px-3 py-2" type="text" name="username"
+                    placeholder="Username" required> -->
+                <h2 class="ml-3 mt-4">Username:</h2>
+                <input class="main border-2 rounded-full w-full px-3 py-2 bg-transparent" type="text" name="name" placeholder="Name"
+                    required>
+                <h2 class="ml-3 mt-4">Email:</h2>
+                <input class="main border-2 rounded-full w-full px-3 py-2 bg-transparent" type="email" name="email"
+                    placeholder="Email"
+                    required>
+                <h2 class="ml-3 mt-4">Roll Number:</h2>
+                <input class="main border-2 rounded-full w-full px-3 py-2 bg-transparent" type="tel" id="phone"
+                    name="mno" placeholder="23/IT/006">
+                <h2 class="ml-3 mt-4"></h2>
+                <input class="main border-2 rounded-full w-full px-3 py-2 bg-transparent" type="file" id="image"
+                    name="image" accept="image/*" required>
+                <h2 class="ml-3 mt-4">Password:</h2>
+                <input class="main border-2 rounded-full block w-full px-3 py-2 bg-transparent" type="password"
+                    name="password"
+                    placeholder="Password" required>
+
+                <input class="main border-2 font-semibold block w-full mt-3 px-3 py-2 bg-red-600 hover:rounded-lg rounded-full
+                text-white" type="submit" value="Register">
+            </form>
+            <div class="text-center">
+                <a class="text-center inline-block mt-2 text-sm font-semibold " href="/login">already have a account?log
+                    in</a>
+            </div>
+
+        </div>
+        <script src="https://cdn.tailwindcss.com" async defer></script>
+</body>
+
+</html>
+

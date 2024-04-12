@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration Form</title>
+</head>
+<h2>User edit Form</h2>
+
+<form action="/edit" method="post" enctype="multipart/form-data">
+    <label for="name">Name:</label><br>
+    <input type="hidden" name="userid" value="<%= user._id%>">
+    <input type="text" id="name" name="name" value="<%= user.name %>"><br><br>
+
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" value="<%= user.email %>"><br><br>
+
+    <!-- <label for="image">Image:</label><br>
+    <input type="file" id="image" name="image" value="" accept="image/*"><br><br> -->
+
+    <label for="mno">Phone Number:</label><br>
+    <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" value="<%= user.mno %>" required><br><br>
+    <input type="submit" value="update">
+</form>
+<!-- <h1>already register click below for login</h1>
+<a href="/login">login</a> -->
+
+</body>
+
+</html>

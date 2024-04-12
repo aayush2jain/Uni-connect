@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/stylesheets/style6.css">
+</head>
+
+<body>
+    <div class="w-full px-10 py-1.5 flex justify-between bg-black text-white">
+        <img class="hover:scale-[1.25]"
+            src="https://imgs.search.brave.com/hkArTvo0jBpPoHXNhOn2O1JQ_PdqibLgc6tAHHjf4Uw/rs:fit:860:0:0/g:ce/aHR0cHM6Ly91cGxv/YWQud2lraW1lZGlh/Lm9yZy93aWtpcGVk/aWEvY29tbW9ucy8z/LzM1L1BpbnRlcmVz/dF9Mb2dvLnN2Zw.svg"
+            width="100px">
+        <div class="flex gap-10 items-center font-semibold">
+            <div class="hover:text-red-600 text-lg"><a href="/profile">Profile</a></div><a
+                class="hover:text-red-600 text-lg" href="/feed">Feed</a><a
+                class="hover:scale-[1.25] px-3 py-1 bg-red-700 text-white rounded-lg" href="/logout">Logout</a>
+        </div>
+    </div>
+    <div id="main" class="w-full min-h-screen bg-zinc-800 px-16 py-16 text-white ">
+        <div class="cards flex flex-wrap gap-10">
+            <% user.posts.forEach((elem) => {%>
+            <div id="card" class="card text-center bg-zinc-200 text-black rounded-lg hover:scale-125">
+                <div class="w-52 h-40  rounded-lg  overflow-hidden">
+                    <img class="w-full h-full object-cover" src="/images/uploads/<%= elem.postimage %>">
+                </div>
+                <a id="link" href="/card/<%=elem._id%>"><%=elem.title %></a>
+            </div>
+            <% })%>
+            <div id="create" class="card text-center bg-zinc-300 text-black rounded-lg ">
+                <div class="w-52 h-40  rounded-lg  overflow-hidden bg-zinc-400">
+                    <img class="w-full h-full object-cover my-2 px-4"
+                        src="https://cdn.iconscout.com/icon/free/png-512/free-add-1738548-1477717.png?f=webp&w=512">
+                </div>
+                <a id="add" href="/add">add post</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        const cards = document.querySelectorAll("#card")
+        cards.forEach((elem) => {
+            elem.addEventListener("click", function () {
+                elem.querySelector("#link").click();
+            })
+        })
+        const link = document.querySelector("#add");
+        const box = document.querySelector("#create")
+        box.addEventListener("click", function () {
+            link.click();
+        })
+    </script>
+    <script src="https://cdn.tailwindcss.com" async defer></script>
+    <script src="" async defer></script>
+</body>
+
+</html>
